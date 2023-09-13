@@ -27,7 +27,7 @@ So we have a dataset on huggingface having different rows consisting **english**
 
 ## Workflow
 
-### Import and load essential libraries
+### 🧶 Import and load essential libraries
 
 ```python
 # Installation
@@ -47,14 +47,14 @@ from transformers import AdamWeightDecay
 from transformers import AutoTokenizer, TFAutoModelForSeq2SeqLM
 ```
 
-### Load the dataset
+### 🧶 Load the dataset
 
 ```python
 raw_datasets = load_dataset("harish03/english_hinglist_sentences",split='train') # loading
 dataset = raw_datasets.train_test_split(test_size=0.3) # Splitting
 ```
 
-### Create instance of tokenizer and preprocess the data before passing it to the finetuning process
+### 🧶 Create instance of tokenizer and preprocess the data before passing it to the finetuning process
 
 ```python
 model_checkpoint = "t5-small"
@@ -74,7 +74,7 @@ def preprocess_function(examples):
 tokenized_datasets = dataset.map(preprocess_function, batched=True) # Encoding the dataset
 ```
 
-### Load the model and configure it corresponding to tokenizer using datacollator
+### 🧶 Load the model and configure it corresponding to tokenizer using datacollator
 
 ```python
 model = TFAutoModelForSeq2SeqLM.from_pretrained(model_checkpoint)
@@ -87,7 +87,7 @@ generation_data_collator = DataCollatorForSeq2Seq(tokenizer, model=model, return
 
 ```
 
-### Generate the dataset suitable to pass to the model 
+### 🧶 Generate the dataset suitable to pass to the model 
 
 ```python
 train_dataset = model.prepare_tf_dataset(
@@ -98,21 +98,21 @@ train_dataset = model.prepare_tf_dataset(
 )
 ```
 
-### Initialize the optimizer
+### 🧶 Initialize the optimizer
 
 ```python
 optimizer = AdamWeightDecay(learning_rate=learning_rate, weight_decay_rate=weight_decay)
 model.compile(optimizer=optimizer)
 ```
 
-### Finally fit the model and save it
+### 🧶 Finally fit the model and save it
 
 ```python
 model.fit(train_dataset, validation_data=validation_dataset, epochs=num_train_epochs)
 model.save_pretrained("model/")
 ```
 
-### Now test the model
+### 🧶 Now test the model
 
 ```python
 def generate_output(input_text):
@@ -130,10 +130,10 @@ for input_text in texts:
     print(generate_output(input_text))
 ```
 
-### Output for example text
+### 🧶 Output for example text
 ![Screenshot from 2023-09-13 18-47-48](https://github.com/Hg03/english-to-hinglish-translator/assets/69637720/350e8da8-1920-4e51-a593-e4b4c6505a19)
 
-### Cons 
+### 🧶 Cons 
 
 - Output maybe not that user friendly, but data grows , model learns more and becomes accurate to all the english words
 
