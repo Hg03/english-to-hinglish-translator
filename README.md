@@ -133,7 +133,11 @@ for input_text in texts:
 ### Output for example text
 ![Screenshot from 2023-09-13 18-47-48](https://github.com/Hg03/english-to-hinglish-translator/assets/69637720/350e8da8-1920-4e51-a593-e4b4c6505a19)
 
-### 🎉🎉🎉🎉
+### Cons 
+
+- Output maybe not that user friendly, but data grows , model learns more and becomes accurate to all the english words
+
+### FINISHED 🎉🎉🎉🎉
 
 
 
